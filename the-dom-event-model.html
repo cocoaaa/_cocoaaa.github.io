@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Hae Jin Song" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="The DOM Event Model"/>
+    <meta property="og:url" content="/the-dom-event-model.html"/>
+    <meta property="og:site_name" content="Small Simplicity"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="/the-dom-event-model.html" />
+
+    <title>The DOM Event Model | Small Simplicity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="/">Small Simplicity </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="/pages/about-me.html">About Me</a></li>
+                            <li ><a href="/category/6s08.html">6s08</a></li>
+                            <li ><a href="/category/css.html">css</a></li>
+                            <li ><a href="/category/dairy.html">dairy</a></li>
+                            <li ><a href="/category/helloworld.html">helloworld</a></li>
+                            <li ><a href="/category/html.html">html</a></li>
+                            <li class="active"><a href="/category/js.html">js</a></li>
+                            <li ><a href="/category/projects.html">Projects</a></li>
+                            <li ><a href="/category/ubuntu.html">ubuntu</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/the-dom-event-model.html" rel="bookmark"
+             title="Permalink to The DOM Event Model">The DOM Event Model</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/hae-jin-song.html">Hae Jin Song</a>
+    </address>
+
+    in <a href="/category/js.html">js</a>
+
+    on 2016-02-11
+
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <p><a href="http://brainjar.com/dhtml/events/default2.asp">Resource</a></p>
+<h2>1. Unlike most attribute, which take a string value, event handlers must be set using a <em>function reference</em>.</h2>
+<div class="highlight"><pre>    :::html
+    &lt;input id=&quot;button1&quot; type=&quot;button&quot; value=&quot;start&quot;
+            onclick=function(){
+                if(this.value ===&quot;start&quot;){
+                    this.value = &quot;end&quot;;
+                } else{
+                    this.value = &quot;start&quot;;
+                }
+            }/&gt;
+    :::
+</pre></div>
+
+
+<p>-</p>
+<div class="highlight"><pre>    :::js
+    var button1 = document.getElementById(&quot;button1&quot;);
+    function highlight(event){
+        this.style.backgroundColor=&#39;black&#39;;
+        this.style.color=&#39;white&#39;;
+    }
+
+    button1.onmouseover = highlight;
+    button1.onmouseout = normal;
+
+    function normal(event){
+        this.style.backgroundColor=&#39;white&#39;;
+        this.style.color=&#39;black&#39;;
+    }
+    :::
+</pre></div>
+
+
+<p><em>Note</em> <br />
+1. handler functions (e.g.<code>highlight</code> and <code>normal</code>) 
+2. The events are assigned to a function reference. <br />
+   If we use <code>highlight()</code> instead of <code>highlight</code>, the returned object of the <code>highlight()</code> would be assigned as the handler.
+3. We don't have to define the function before referring to it.  <br />
+   For example, we referred to <code>normal</code> before the definition. </p>
+<h2>JS Engine</h2>
+<h3>How does web browser work</h3>
+<p><a href="http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/">Source</a></p>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

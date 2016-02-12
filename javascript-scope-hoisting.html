@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Hae Jin Song" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Javascript scope hoisting"/>
+    <meta property="og:url" content="/javascript-scope-hoisting.html"/>
+    <meta property="og:site_name" content="Small Simplicity"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="/javascript-scope-hoisting.html" />
+
+    <title>Javascript scope hoisting | Small Simplicity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="/">Small Simplicity </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="/pages/about-me.html">About Me</a></li>
+                            <li ><a href="/category/6s08.html">6s08</a></li>
+                            <li ><a href="/category/css.html">css</a></li>
+                            <li ><a href="/category/dairy.html">dairy</a></li>
+                            <li ><a href="/category/helloworld.html">helloworld</a></li>
+                            <li ><a href="/category/html.html">html</a></li>
+                            <li class="active"><a href="/category/js.html">js</a></li>
+                            <li ><a href="/category/projects.html">Projects</a></li>
+                            <li ><a href="/category/ubuntu.html">ubuntu</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/javascript-scope-hoisting.html" rel="bookmark"
+             title="Permalink to Javascript scope hoisting">Javascript scope hoisting</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/hae-jin-song.html">Hae Jin Song</a>
+    </address>
+
+    in <a href="/category/js.html">js</a>
+
+    on 2016-01-27
+
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <p><a href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Source</a></p>
+<h2>variable scope</h2>
+<h3>Key: not block scoping: {} does not define a scope, but function scoping</h3>
+<ol>
+<li>
+<p>Global variable</p>
+<ul>
+<li>
+<p>no <code>var</code> used to declare a variable (both in and outside of a function)</p>
+<div class="highlight"><pre><span class="nx">myname</span> <span class="o">=</span> <span class="s2">&quot;Hayley&quot;</span><span class="p">;</span> <span class="c1">//global</span>
+<span class="kd">function</span> <span class="nx">sayHi</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hi, &quot;</span><span class="o">+</span><span class="nx">myname</span><span class="p">);</span> <span class="c1">// &quot;Hi, Hayley&quot; rather than &quot;Hi, undefined&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>definted outside of a function with <code>var</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Local variable defined with <code>var</code> takes precedence over global variable of the same name when a function is called.</p>
+</li>
+<li>
+<p>Arguments into a function are also local variable</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">myname</span> <span class="o">=</span><span class="s1">&#39;HAYLEY&#39;</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">sayhi</span><span class="p">(</span><span class="nx">myname</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myname</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">sayhi</span><span class="p">(</span><span class="s2">&quot;sam&quot;</span><span class="p">);</span> <span class="c1">//&quot;sam&quot;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myname</span><span class="p">);</span> <span class="c1">//&quot;HAYLEY&quot;</span>
+</pre></div>
+
+
+</li>
+</ol>
+<p>So think of <code>var myFunction(arg1){}</code> as <code>var myFunction(){   var arg1=arg1;}</code></p>
+<h2>Hoisting</h2>
+<p>Variable declaration (not initialization or assignment) and function declaration are hoisted to the top of the script or function if defined within a function.</p>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

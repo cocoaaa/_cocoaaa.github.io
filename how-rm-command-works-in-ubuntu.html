@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Hae Jin Song" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="How rm command works in Ubuntu"/>
+    <meta property="og:url" content="/how-rm-command-works-in-ubuntu.html"/>
+    <meta property="og:site_name" content="Small Simplicity"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="/how-rm-command-works-in-ubuntu.html" />
+
+    <title>How rm command works in Ubuntu | Small Simplicity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="/">Small Simplicity </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="/pages/about-me.html">About Me</a></li>
+                            <li ><a href="/category/6s08.html">6s08</a></li>
+                            <li ><a href="/category/css.html">css</a></li>
+                            <li ><a href="/category/dairy.html">dairy</a></li>
+                            <li ><a href="/category/helloworld.html">helloworld</a></li>
+                            <li ><a href="/category/html.html">html</a></li>
+                            <li ><a href="/category/js.html">js</a></li>
+                            <li ><a href="/category/projects.html">Projects</a></li>
+                            <li class="active"><a href="/category/ubuntu.html">ubuntu</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/how-rm-command-works-in-ubuntu.html" rel="bookmark"
+             title="Permalink to How rm command works in Ubuntu">How <code>rm</code> command works in Ubuntu</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/hae-jin-song.html">Hae Jin Song</a>
+    </address>
+
+    in <a href="/category/ubuntu.html">ubuntu</a>
+
+    on 2016-01-27
+
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <h2>1. <code>virtualenv</code> for blogging with <code>pelican</code></h2>
+<p>While setting up this blog using <a href=#>pelican</a> and <a href=#>github.io</a>, I finally decided to use python's <a href=#>virtualenv</a> package which allows to set up multiple virtual environments (quite literally) that can be activated per project basis. </p>
+<p>In a recent <a href=#>python meetup</a>, I learned running <code>pip</code> as a root (e.g. <code>sudo pip install somepackage</code> ) allows the <code>somepackage</code> to run around on my system as a root. Though difficult, I resisted to type <code>sudo pip install pelican</code> and did <code>sudo apt-get install virtalenv</code>.  (A quick question here, how is <code>sudo apt-get install</code> different from <code>sudo pip install</code>?  Is this safer?, why?)  Once all requirements were installed, setting up a virtual environment for a python project was a lot simpler that what I had imagined.  I decided to put my blog on ~/virtualenv/blog, and used the following code to create the new directory and set up the virtual environment for <code>pelican</code>. </p>
+<div class="highlight"><pre><span class="c1">#Create the directory and a new virtual environment</span>
+virtualenv <span class="o">(</span>-python<span class="o">==</span>python2.7<span class="o">)</span> ~/virtualenv/blog
+<span class="c1">#cd into the directory and activate the virtualenvironment</span>
+<span class="nb">cd</span> ~/virtualenv/blog
+<span class="nb">source</span> bin/activate
+<span class="c1">#Install pelican</span>
+pip install pelican
+<span class="c1">#install other dependencies. For example,</span>
+pip install Markdown
+</pre></div>
+
+
+<p>Enough about <code>virtualenv</code> for now.  What I really want to talk about in this post is  how UNIX file system's deletion works.  I used a lot of <code>rm -rf someDirectory</code> command while playing with <code>virtualenv</code>.  I wanted to set one up using the latest python (python 2.7.10), but it seemed like <code>virtualenv</code> can only link to a python version already installed on the system, rather than installing a new python (which makes sense considering memory requirements: it wouldn't be the wisest thing to install a new python for each virtual environment). My current default version is 2.7.6, so I just decided to go with it.  </p>
+<p>I realized the trash bin doesn't change after <code>rm someFile</code> or <code>rm -rf someDirectory</code>. Strange: where does the deleted file go then? Can I recover it later?  I suspected it had to do with unlinking in UNIX file system, and this <a href="http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued">stackexchange post</a> and <a href="http://www.slashroot.in/how-does-file-deletion-work-linux">another article</a> helped me understand what was happening behind the scene.  </p>
+<h2>2. <code>rm</code> and deletion in Unix</h2>
+<p>To understand how a file is deleted in Unix, we first need to understand how Unix file system works.  A good time to review 6.033 materials! <a href="http://www.slashroot.in/inode-and-its-structure-linux">Here</a> is a great article on this topic.</p>
+<h3>Unix file system: Inode</h3>
+<ol>
+<li>Inode: a data structure that stores metadata of a file <br />
+    I store whatever information in a file. The OS stroes information about this file in Inode.</li>
+<li>Inode table <br />
+    When a user needs to access a file, the OS looks up this table to find the unique Inode (also called "Inode number") for the file.</li>
+</ol>
+<h4>Inode for a file</h4>
+<p>Remember Inode is a data structure that stores information about the file , for example, owner, size, time stamps, etc. </p>
+<table>
+<thead>
+<tr>
+<th>Inode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mode</td>
+</tr>
+<tr>
+<td>owner</td>
+</tr>
+<tr>
+<td>Size</td>
+</tr>
+<tr>
+<td>Time stampes</td>
+</tr>
+<tr>
+<td>Direct Blocks</td>
+</tr>
+<tr>
+<td>Indirect Blocks</td>
+</tr>
+<tr>
+<td>Double Indirect</td>
+</tr>
+<tr>
+<td>Triple Indirect</td>
+</tr>
+</tbody>
+</table>
+<h4>Inode for a directory</h4>
+<table>
+<thead>
+<tr>
+<th align="center">Inode No 123456</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">.</td>
+<td align="center">11111</td>
+</tr>
+<tr>
+<td align="center">..</td>
+<td align="center">11100</td>
+</tr>
+<tr>
+<td align="center">subFolder1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">file1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">file2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">file3</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4>File deletion in Unix</h4>
+<p>Whenever a file is deleted using <code>rm</code>, the file's data is never deleted: the data blocks in the file system is still there.  </p>
+<p>As the below diagram shows, the inode just removes the link to the data blocks.
+In ex3, it also zeros the entries in the Inode. </p>
+<ul>
+<li>
+<p>Deletion in ex2<br />
+<img alt="deletion-ex2" src="http://www.slashroot.in/sites/default/files/inode%20structure%20after%20the%20file%20deletion%20etx2.png" style="width: 60%; height: auto"/></p>
+</li>
+<li>
+<p>Deletion in ex3<br />
+<img alt="deletion-ex3" src="http://www.slashroot.in/sites/default/files/inode%20structure%20after%20file%20deletion%20in%20ext3.png" style="width: 60%; height: auto"/>   </p>
+</li>
+<li>
+<p>Note <br />
+ex2 and ex3 (and ex4) are all file systems created for Linux. "ex" stands for "extended file system".  ex3 is the thried extended file system with journaling. <br />
+Summaries on their differences can be found <a href="http://www.thegeekstuff.com/2011/05/ext2-ext3-ext4/">here</a>. <br />
+Run <code>mount | grep "^/dev"</code> on the terminal to figure out which file systems are used.  I'm currently using ex4. </p>
+</li>
+</ul>
+<hr />
+<hr />
+<p>The more coding I do, the more goolging I do.  The more googling I do, the more I learn about the importance of asking the right question.  I learn that there are several stages of figuring out a solution to my problem/bug in a code.</p>
+<ol>
+<li>
+<p>Something doesn't work as I expected in my application. </p>
+</li>
+<li>
+<p>Poke around the program this way, that way, and thisthat way.  Still no luck.  A familiar feeling that I must have broken it even badly roams up.  (btw, please use some sane way to version-control.)</p>
+</li>
+<li>
+<p>Help me, Google. </p>
+<ul>
+<li>easier if there is an explicit error message from the compiler or interpreter. Yay, I will just copy and paste the error message!</li>
+<li>Harder if it's more of a semantic bug since that means you have to figure out and phrase the problem in your own language.     </li>
+</ul>
+</li>
+<li>
+<p>Turned out I was asking the wrong question.  The cause wasn't <code>x</code> as I was expecting, but it was because I didn't understand what was really happening in a lower system level</p>
+</li>
+<li>
+<p>Ask a question that sounds more unrelated to my current bug.  For example, "how does a webframe work?" (and yes I did ask this and <a href="{filename}/content/webframe.md">here</a> is what I learned) or "how does a compiler perform preprocessing?" </p>
+</li>
+<li>
+<p>Learn something new about the system I'm working on.</p>
+</li>
+<li>
+<p>Go back to code. Make changes. Viola! Be merry!</p>
+</li>
+</ol>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

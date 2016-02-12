@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Hae Jin Song" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Lab1 notes"/>
+    <meta property="og:url" content="/lab1-notes.html"/>
+    <meta property="og:site_name" content="Small Simplicity"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="/lab1-notes.html" />
+
+    <title>Lab1 notes | Small Simplicity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="/">Small Simplicity </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="/pages/about-me.html">About Me</a></li>
+                            <li class="active"><a href="/category/6s08.html">6s08</a></li>
+                            <li ><a href="/category/css.html">css</a></li>
+                            <li ><a href="/category/dairy.html">dairy</a></li>
+                            <li ><a href="/category/helloworld.html">helloworld</a></li>
+                            <li ><a href="/category/html.html">html</a></li>
+                            <li ><a href="/category/js.html">js</a></li>
+                            <li ><a href="/category/projects.html">Projects</a></li>
+                            <li ><a href="/category/ubuntu.html">ubuntu</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/lab1-notes.html" rel="bookmark"
+             title="Permalink to Lab1 notes">Lab1 notes</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/hae-jin-song.html">Hae Jin Song</a>
+    </address>
+
+    in <a href="/category/6s08.html">6s08</a>
+
+    on 2016-01-27
+
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <ol>
+<li>
+<p>Flash memory is a type of ROM</p>
+<ul>
+<li>Teensy has 256k</li>
+<li>Compile your program and upload it to the microcontroller -&gt; the program is saved in the flash memory -&gt; CPU brings in ("reads") and executes the program </li>
+<li>Ref: <a href="">HowStuffWorks</a></li>
+</ul>
+</li>
+<li>
+<p>Serial port   </p>
+<ul>
+<li>a <em>serial</em> communication interface through which information transfers in/out one bit at a time</li>
+</ul>
+<p><img alt="serial_port" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Serial_port.jpg" style="width: 50%; height: auto">   </p>
+<ul>
+<li>compare: <em>parallel</em> communication</li>
+</ul>
+</li>
+<li>
+<p>SPI (Serial Peripheral Interface)</p>
+<ul>
+<li>an interface bus commonly used to send data between microcontrollers and small peripherals such as shift registersss, sensors, and SD cards.</li>
+</ul>
+</li>
+<li>
+<p><a href="http://www.i2c-bus.org/i2c-bus/">I2C-Bus</a>
+    &gt; allows easy communication between components which reside on the same circuit board.</p>
+<p>For example, communication between teensy and the LED screen, or between teensy and the IMU (Inertial Measurement Unit).</p>
+</li>
+<li>
+<p>Baud rate   </p>
+<ul>
+<li>How many bits per second are communicated   </li>
+<li>Teensy uses USB to communicate, so the baud rate on the serial ports don't matter.   </li>
+</ul>
+</li>
+<li>
+<p><code>#define varName value</code>   </p>
+<ul>
+<li>The compiler replaces every occurance of the variable with the assigned value. So, we can set up gloabal variables without taking up memory. </li>
+</ul>
+</li>
+<li>
+<p><code>Adafruit_SSD1306 display(OLED_RESET)</code></p>
+<ul>
+<li><code>Adafruit_SSD1306</code> is a class</li>
+<li><code>display</code> is the name of the instance</li>
+<li><code>OLED_RESET</code> is the initialization argument to create <code>display</code> instance</li>
+</ul>
+</li>
+</ol>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

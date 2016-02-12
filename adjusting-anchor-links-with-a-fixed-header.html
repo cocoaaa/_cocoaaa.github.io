@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Hae Jin Song" />
+    <meta name="robots" content="index, follow"/>
+
+    <meta property="og:title" content="Adjusting anchor links with a fixed header"/>
+    <meta property="og:url" content="/adjusting-anchor-links-with-a-fixed-header.html"/>
+    <meta property="og:site_name" content="Small Simplicity"/>
+    <meta property="og:type" content="article"/>
+
+    <link rel="canonical" href="/adjusting-anchor-links-with-a-fixed-header.html" />
+
+    <title>Adjusting anchor links with a fixed header | Small Simplicity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+</head>
+
+<body id="index">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <header id="banner" >
+                <h1>
+                    <a href="/">Small Simplicity </a>
+                </h1>
+                <nav class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="nav">
+                            <li ><a href="/pages/about-me.html">About Me</a></li>
+                            <li ><a href="/category/6s08.html">6s08</a></li>
+                            <li class="active"><a href="/category/css.html">css</a></li>
+                            <li ><a href="/category/dairy.html">dairy</a></li>
+                            <li ><a href="/category/helloworld.html">helloworld</a></li>
+                            <li ><a href="/category/html.html">html</a></li>
+                            <li ><a href="/category/js.html">js</a></li>
+                            <li ><a href="/category/projects.html">Projects</a></li>
+                            <li ><a href="/category/ubuntu.html">ubuntu</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header><!-- /#banner -->
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div class="row-fluid">
+<div class="span10 offset1">
+  <section>
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="/adjusting-anchor-links-with-a-fixed-header.html" rel="bookmark"
+             title="Permalink to Adjusting anchor links with a fixed header">Adjusting anchor links with a fixed header</a></h1>
+      </header>
+      <div class="entry-content">
+<footer class="post-info">
+    <address class="vcard author">
+        by <a class="url fn" href="/author/hjsong.html">hjsong</a>
+    </address>
+
+    in <a href="/category/css.html">css</a>
+
+    on 2016-01-26
+
+        |
+        tags:         <a href="/tag/css.html">css</a>
+
+
+
+    
+</footer><!-- /.post-info -->
+
+        <p>When there is a header that follows you as you scroll down/up the page, it may overlap with other tags. For example, it can overlap with the anchor tags as in the example below.</p>
+<p><img alt="header_overlap.jpg" src="{filename}/images/header_overlap.jpg" /></p>
+<p>Using a bit of html and css, we can avoid this overlapping.
+You can play with this <a href="https://jsfiddle.net/ze8rud5b/5/">jsfiddle</a> as well.</p>
+<p>Originally we had:</p>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;header&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;position: fixed; top: 0; border: solid&quot;</span> <span class="p">&gt;</span>
+This is the header.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#section1&quot;</span><span class="p">&gt;</span>Section 1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#section2&quot;</span><span class="p">&gt;</span>Section 2<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#section3&quot;</span><span class="p">&gt;</span>Section 3<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!--&lt;span class=&quot;anchor&quot; id=&quot;section1&quot;&gt;&lt;/span&gt;--&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section1&quot;</span><span class="p">&gt;</span>
+Jump here to start section 1
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!--&lt;span class=&quot;anchor&quot; id=&quot;section2&quot;&gt;&lt;/span&gt;--&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section2&quot;</span> <span class="p">&gt;</span>
+Jump here to start section 2
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!--&lt;span class=&quot;anchor&quot; id=&quot;section3&quot;&gt;&lt;/span&gt;--&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section3&quot;</span><span class="p">&gt;</span>
+Jump here to start section 3
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> 
+</pre></div>
+
+
+<p>Without any modification, if we click on 'Section 2', the content "Jump here to start section 2" overlaps with the header. 
+<img alt="overlap1" src="{filename}/images/overlap1.jpg" /></p>
+<p>However, if we add a '<span>' element before each target destination '</div>', then we can control the format of '<span>' to avoid this overlap.
+Let's add them in HTML, and modify them in CSS.</p>
+<p><strong>HTML</strong></p>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;header&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;position: fixed; top: 0; border: solid&quot;</span> <span class="p">&gt;</span>
+This is the header.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#section1&quot;</span><span class="p">&gt;</span>Section 1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#section2&quot;</span><span class="p">&gt;</span>Section 2<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#section3&quot;</span><span class="p">&gt;</span>Section 3<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;anchor&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section1&quot;</span><span class="p">&gt;</span>
+Jump here to start section 1
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;anchor&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section2&quot;</span> <span class="p">&gt;</span>
+Jump here to start section 2
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;anchor&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;section3&quot;</span><span class="p">&gt;</span>
+Jump here to start section 3
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> 
+</pre></div>
+
+
+<p><strong>CSS</strong></p>
+<div class="highlight"><pre><span class="nc">.anchor</span> <span class="p">{</span>
+  <span class="nb">border</span><span class="o">:</span><span class="nb">solid</span> <span class="nb">red</span><span class="p">;</span> <span class="c">/*for demostration */</span>
+  <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nb">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span> <span class="c">/*Same height as the header&#39;s */</span>
+<span class="o">&lt;!--</span>  <span class="nb">visibility</span><span class="o">:</span> <span class="nb">hidden</span><span class="p">;</span> <span class="c">/*Uncomment it to use */</span><span class="o">--&gt;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><strong>Or</strong></p>
+<div class="highlight"><pre><span class="nt">div</span><span class="nc">.target</span> <span class="p">{</span>
+    <span class="nb">padding-top</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span> <span class="c">/* Same height as the header&#39;s*/</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<hr />
+<p><strong>Credits</strong><br />
+ - </p>
+
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="site-footer">
+        <div class="row-fluid">
+            <div class="span10 offset1">
+                <address>
+                    <p>
+                        This blog is proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                    </p>
+                    <p>
+                        <a href="http://github.com/jsliang/pelican-fresh/">Fresh</a> is a responsive theme designed by <a href="http://jsliang.com/">jsliang</a> and <a href="https://github.com/jsliang/pelican-fresh/graphs/contributors">contributors</a>.
+                        Special thanks to <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and <a href="http://getbootstrap.com/">Twitter Bootstrap</a>.
+                    </p>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
