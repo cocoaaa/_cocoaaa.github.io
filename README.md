@@ -1,2 +1,4 @@
 # cocoaaa.github.io
-Blog using python's Pelican
+Hayley's blog using Python Pelican
+
+Click [here!](http://cocoaaa.github.io)
